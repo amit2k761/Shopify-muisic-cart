@@ -1,0 +1,30 @@
+const bodyParser= require('body-parser');
+const urlEncodeParser = bodyParser.urlencoded({extended :false});
+var cart = [];
+//var itemSize= cart.length;
+module.exports = function(app){
+    app.get('/shop',(req,resp)=>{
+       resp.render('index',{items : cart});
+    });
+
+    app.post('/shop/:id',urlEncodeParser,(req,resp)=>{
+       var i =req.params.id
+        cart.push(i);
+       resp.render('index',{items :cart});
+    });
+app.delete('/shop/:id',(req,resp)=>{
+    var item = req.params.id;
+    var index =cart.indexOf(item);
+    cart.splice(index,1);
+    resp.render('index',{items :cart});
+});
+
+app.get('/shop/checkout',(req,resp)=>{
+    resp.render('checkout',{items:cart});
+});
+
+app.get('/shop/checkout/payment',(req,resp)=>{
+    resp.render('payment');
+})
+ };
+
