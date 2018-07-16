@@ -1,0 +1,20 @@
+<div class="row">
+    <% products.forEach(function (product) { %>
+        <div class="col-sm-6 col-md-4">
+            <img src="<%= product.image_url %>" class="img-fluid" alt="guitar">
+            <div class="caption">
+                <h4 class="uppercase-text">
+                    <%= product.category %> PRODUCT</h4>
+                <p class="product-name">
+                    <%= product.title %>
+                </p>
+
+                <div class="b1">
+                    <button data-product-title="<%= product.title %>" type="button" class="btn btn-primary btn-hide add-to-cart"> ADD TO CART</button>
+                </div>
+
+            </div>
+        </div>
+
+    <% }); %>
+</div>
